@@ -131,7 +131,7 @@
         $check_department_name ->bindParam(":department_name", $department_name);
         $check_department_name->execute();
         $row = $check_department_name->fetch(PDO::FETCH_ASSOC);
-        
+         
         if ($row['department_name'] == $department_name) {
             $_SESSION['warning'] = "มีข้อมูลนี้อยู่ในระบบแล้ว";
             header("location:  manage_department.php");
