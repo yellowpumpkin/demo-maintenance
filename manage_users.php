@@ -4,7 +4,7 @@
     require_once 'config/db.php';
     if (!isset($_SESSION['admin_login'])) {
         $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ!';
-        header('location: signin.php');
+        header('location: signin');
     }
 
     if (isset($_REQUEST['delete_id'])) {
@@ -20,7 +20,7 @@
         $delete_stmt->bindParam(':id', $id);
         $delete_stmt->execute();
 
-        header('Location:manage_users.php');
+        header('Location:manage_users');
     }
 
    
@@ -97,7 +97,7 @@
     ?>
     <nav class="navbar navbar-light bg-light p-3">
         <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-            <a class="navbar-brand" href="admin.php">
+            <a class="navbar-brand" href="admin">
                 <?php echo $row['urole'] ?>
             </a>
             <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
@@ -115,7 +115,7 @@
                     Hello, <?php echo $row['firstname'] . ' ' . $row['lastname'] ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
-                    <li><a class="dropdown-item" href="signout.php">Sign out</a></li>
+                    <li><a class="dropdown-item" href="signout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -126,7 +126,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="maintenance_view.php">
+                            <a class="nav-link " aria-current="page" href="maintenance_view">
                                 <i data-feather="folder"></i>
                                 <span class="ml-2">ข้อมูลแจ้งซ่อม</span>
                             </a>
@@ -139,12 +139,12 @@
                             <div class="collapse in" id="Adepartment">
                                 <ul id="">
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="manage_department.php">
+                                        <a class="nav-link" href="manage_department">
                                             <span class="link-collapse">ข้อมูลแผนกงาน</span>
                                         </a>
                                     </li>
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="manage_status.php">
+                                        <a class="nav-link" href="manage_status">
                                             <span class="link-collapse">ข้อมูลสถานะ</span>
                                         </a>
                                     </li>
@@ -153,7 +153,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" data-toggle="collapse"
-                                href="manage_users.php">
+                                href="manage_users">
                                 <i data-feather="users"></i>
                                 <span class="ml-2">จัดการข้อมูลผู้ใช้งาน</span>
                             </a>
@@ -166,17 +166,17 @@
                             <div class="collapse in" id="manage_maintenance">
                                 <ul id="">
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="manage_maintenance.php">
+                                        <a class="nav-link" href="manage_maintenance">
                                             <span class="link-collapse">งานแจ้งซ่อม (new)</span>
                                         </a>
                                     </li>
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="admin_update_maintenance.php">
+                                        <a class="nav-link" href="admin_update_maintenance">
                                             <span class="link-collapse">ติดตามงานแจ้งซ่อม</span>
                                         </a>
                                     </li>
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="maintenance_all.php">
+                                        <a class="nav-link" href="maintenance_all">
                                             <span class="link-collapse">งานแจ้งซ่อมทั้งหมด</span>
                                         </a>
                                     </li>
@@ -195,7 +195,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-4 col-md-5 col-lg-7 mt-3 ">
-                                    <a href="signup.php" class="btn btn-success mb-3 ml-1 ">+ เพิ่มข้อมูลผู้ใช้งาน</a>
+                                    <a href="signup" class="btn btn-success mb-3 ml-1 ">+ เพิ่มข้อมูลผู้ใช้งาน</a>
                                 </div>
                                 <div class="card-body">
                                   
@@ -257,7 +257,7 @@
                                                             data-toggle="modal"
                                                             data-target="#exampleModalCenter<?php echo $row["id"]; ?>">Edit</button>
                                                     </td>
-                                                    <td><a href="resetpassword.php?id=<?php echo $row["id"]; ?>"
+                                                    <td><a href="resetpassword?id=<?php echo $row["id"]; ?>"
                                                             class="btn btn-primary">resetpassword</a>
                                                     </td>
                                                 </tr>
@@ -429,7 +429,7 @@
 
                                                                                 <div class="col-md-12">
                                                                                     <a style="float: right;"
-                                                                                        href="resetpassword.php?id=<?php echo $row["id"]; ?>">forgot
+                                                                                        href="resetpassword?id=<?php echo $row["id"]; ?>">forgot
                                                                                         password</a>
                                                                                 </div>
                                                                             </div>
@@ -437,7 +437,7 @@
                                                                     </div>
 
                                                                     <div class="modal-footer">
-                                                                        <a href="manage_users.php"
+                                                                        <a href="manage_users"
                                                                             class="btn btn-secondary">กลับ</a>
                                                                         <button type="submit" name="update_users"
                                                                             class="btn btn-primary">บันทึก</button>

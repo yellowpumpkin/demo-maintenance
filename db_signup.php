@@ -15,25 +15,25 @@
 
         if (empty($username)) {
             $_SESSION['error'] = 'กรุณากรอก username';
-            header("location: signup.php");
+            header("location: signup");
         } else if (empty($password)) {
             $_SESSION['error'] = 'กรุณากรอกรหัสผ่าน';
-            header("location: signup.php");
+            header("location: signup");
         } else if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
             $_SESSION['error'] = 'รหัสผ่านต้องมีความยาวระหว่าง 5 ถึง 20 ตัวอักษร';
-            header("location: signup.php");
+            header("location: signup");
         } else if (empty($c_password)) {
             $_SESSION['error'] = 'กรุณายืนยันรหัสผ่าน';
-            header("location: signup.php");
+            header("location: signup");
         } else if ($password != $c_password) {
             $_SESSION['error'] = 'รหัสผ่านไม่ตรงกัน';
-            header("location: signup.php");
+            header("location: signup");
         } else if (strlen($_POST['phone']) > 10) {
             $_SESSION['error'] = 'เบอร์โทรศัพท์ต้องมีความยาว 10 ตัว';
-            header("location: signup.php");
+            header("location: signup");
         } else if (empty($urole)) {
             $_SESSION['error'] = 'กรุณากรอกระดับสมาชิก';
-            header("location: signup.php");
+            header("location: signup");
         } else {
             try {
                 $check_username = $conn->prepare("SELECT username FROM tbl_users WHERE username = :username");
@@ -43,7 +43,7 @@
                 
                 if ($row['username'] == $username) {
                     $_SESSION['warning'] = "มี username นี้อยู่ในระบบแล้ว";
-                    header("location: signup.php");
+                    header("location: signup");
                 } else if (!isset($_SESSION['error'])) {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                     $stmt = $conn->prepare("INSERT INTO tbl_users(username, password, firstname, lastname, phone, department, urole, status) 
@@ -59,10 +59,10 @@
                     $stmt->bindParam(":status", $status);
                     $stmt->execute();
                     $_SESSION['success'] = "สมัครสมาชิกเรียบร้อยแล้ว!";
-                    header("location: signup.php");
+                    header("location: signup");
                 } else {
                     $_SESSION['error'] = "มีบางอย่างผิดพลาด";
-                    header("location: signup.php");
+                    header("location: signup");
                 }
 
             } catch(PDOException $e) {
@@ -83,18 +83,18 @@
 
         try {
             if (!isset($_SESSION['error'])){       
-                $sql = $conn->prepare("UPDATE tbl_users SET username=:username , firstname=:firstname , lastname=:lastname  , phone=:phone , urole=:urole , status=
+                $sql = $conn->prepare("UPDATE tbl_users SET username=:username , firstname=:firstname , lastname=:lastname  , department=(SELECT department_id FROM tbl_department WHERE department_id = (SELECT department_id FROM tbl_department WHERE department_name=:department)),phone=:phone , urole=:urole , status=
                 :status  WHERE id = $uid ");
                 $sql->bindParam(":username",  $username );
                 $sql->bindParam(":firstname",  $firstname );
                 $sql->bindParam(":lastname",  $lastname );
-                  
+                $sql->bindParam(":department",  $department );
                 $sql->bindParam(":phone",  $phone);
                 $sql->bindParam(":urole",  $urole);
                 $sql->bindParam(":status", $status);        
                 $sql->execute();           
                 $_SESSION['success'] = "อัพเดทข้อมูลสำเร็จ";
-                header("location: manage_users.php");
+                header("location: manage_users");
             } 
         } catch(PDOException $e) {
             echo $e->getMessage();
@@ -106,16 +106,16 @@
 
             if (empty($password)) {
                 $_SESSION['error'] = 'กรุณากรอกรหัสผ่าน';
-                header("location: resetpassword.php");
+                header("location: resetpassword");
             } else if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
                 $_SESSION['error'] = 'รหัสผ่านต้องมีความยาวระหว่าง 5 ถึง 20 ตัวอักษร';
-                header("location: resetpassword.php");
+                header("location: resetpassword");
             } else if (empty($c_password)) {
                 $_SESSION['error'] = 'กรุณายืนยันรหัสผ่าน';
-                header("location: resetpassword.php");
+                header("location: resetpassword");
             } else if ($password != $c_password) {
                 $_SESSION['error'] = 'รหัสผ่านไม่ตรงกันค่ะ';
-                header("location: resetpassword.php");
+                header("location: resetpassword");
             }  else {
                 try {
                     if (!isset($_SESSION['error'])){
@@ -125,13 +125,13 @@
                         $sql->bindParam(":password",  $passwordHash );                                
                         $sql->execute();           
                         $_SESSION['success'] = "รีเซ็ตรหัสผ่านสำเร็จ";
-                        header("location: manage_users.php");
+                        header("location: manage_users");
                             
                     } 
                 
                     else {
                         $_SESSION['error'] = "มีบางอย่างผิดพลาด";
-                        header("location: manage_users.php");
+                        header("location: manage_users");
                     }
     
                 } catch(PDOException $e) {

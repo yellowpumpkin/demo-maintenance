@@ -4,7 +4,7 @@
     require_once 'config/db.php';
     if (!isset($_SESSION['technician_login'])) {
         $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ!';
-        header('location: signin.php');
+        header('location: signin');
     }
 
   
@@ -93,7 +93,7 @@
     ?>
     <nav class="navbar navbar-light bg-light p-3">
         <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-            <a class="navbar-brand" href="technician.php">
+            <a class="navbar-brand" href="technician">
                 <?php echo $row['urole'] ?>
             </a>
             <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
@@ -111,7 +111,7 @@
                     Hello, <?php echo $row['firstname'] . ' ' . $row['lastname'] ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="signout.php">Sign out</a></li>
+                    <li><a class="dropdown-item" href="signout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -122,7 +122,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <?php if (isset($_SESSION['technician_login'])) { ?>
-                        <a class="nav-link active" aria-current="page" href=technician.php>
+                        <a class="nav-link active" aria-current="page" href=technician>
                             <i data-feather="rewind"></i>
                             <span class="ml-2">BACK</span>
                         </a>
@@ -214,32 +214,32 @@
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["tech"]; ?></td>
                                                 <?php
-                                                    if ($row["status_name"] == $status[5]){  ?>
+                                                    if ($row["status_name"] == $status[4]){  ?>
                                                 <td><a style="color: #8ebf42"><?php echo $row["status_name"]; ?></a>
                                                 </td>
                                                 <?php } ?>
                                                 <?php
-                                                    if ($row["status_name"] == $status[6]){ ?>
+                                                    if ($row["status_name"] == $status[5]){ ?>
                                                 <td><a style="color: #E90B0B"><?php echo $row["status_name"]; ?></a>
                                                 </td>
                                                 <?php } ?>
                                                 <?php
-                                                    if ($row["status_name"] == $status[1]){ ?>
+                                                    if ($row["status_name"] == $status[0]){ ?>
                                                 <td><a style="color: #8601AF"><?php echo $row["status_name"]; ?></a>
                                                 </td>
                                                 <?php } ?>
                                                 <?php
-                                                    if ($row["status_name"] == $status[2]){ ?>
+                                                    if ($row["status_name"] == $status[1]){ ?>
                                                 <td><a style="color: #0E90EA"><?php echo $row["status_name"]; ?></a>
                                                 </td>
                                                 <?php } ?>
                                                 <?php
-                                                    if ($row["status_name"] == $status[3]){ ?>
+                                                    if ($row["status_name"] == $status[2]){ ?>
                                                 <td><a style="color: #E9940B"><?php echo $row["status_name"]; ?></a>
                                                 </td>
                                                 <?php } ?>
                                                 <?php
-                                                    if ($row["status_name"] == $status[4]){ ?>
+                                                    if ($row["status_name"] == $status[3]){ ?>
                                                 <td><a style="color: #FF01A6"><?php echo $row["status_name"]; ?></a>
                                                 </td>
                                                 <?php } ?>
@@ -453,7 +453,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <a href="tech_maintenance.php"
+                                                                    <a href="tech_maintenance"
                                                                         class="btn btn-secondary">Go Back</a>
                                                                     <button type="submit" name="update_maintenance"
                                                                         class="btn btn-primary"

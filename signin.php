@@ -25,7 +25,7 @@
     <!-- Nav Bar -->
     <nav class="navbar">
         <div class="navbar__container">
-            <a href="index.php" class="logo__sk">
+            <a href="index" class="logo__sk">
                 <img src="images/dog.png" alt="" />
             </a>
             <!-- <a class="animate-charcter">SIAM KYOHWA <span> SEISAKUSHO</span></a> -->
@@ -35,7 +35,7 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="index.php" class="navbar__links" id="home-page">Home</a>
+                    <a href="index" class="navbar__links" id="home-page">Home</a>
                 </li>
 
                 <li class="navbar__btn">

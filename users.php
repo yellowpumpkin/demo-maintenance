@@ -4,7 +4,7 @@
     require_once 'config/db.php';
     if (!isset($_SESSION['user_login'])) {
         $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ!';
-        header('location: signin.php');
+        header('location: signin');
     }
 
 ?>
@@ -74,7 +74,7 @@
     ?>
     <nav class="navbar navbar-light bg-light p-3">
         <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-            <a class="navbar-brand" href="admin.php">
+            <a class="navbar-brand" href="users">
                 <?php echo $row['urole'] ?>
             </a>
             <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
@@ -92,7 +92,7 @@
                     Hello, <?php echo $row['firstname'] . ' ' . $row['lastname'] ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="signout.php">Sign out</a></li>
+                    <li><a class="dropdown-item" href="signout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -103,13 +103,13 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="maintenance_view.php">
+                            <a class="nav-link " aria-current="page" href="maintenance_view">
                                 <i data-feather="folder"></i>
                                 <span class="ml-2">ข้อมูลงานแจ้งซ่อม</span>
                             </a>
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page" data-toggle="collapse"
-                                href="users_maintenance.php">
+                                href="users_maintenance">
                                 <i data-feather="settings"></i>
                                 <span class="ml-2">เพิ่มข้อมูลแจ้งซ่อม</span>
                             </a>

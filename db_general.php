@@ -7,7 +7,7 @@
 
         if (empty($department_name)) {
             $_SESSION['error'] = 'กรุณากรอกแผนกงาน ';
-            header("location: manage_department.php");
+            header("location: manage_department");
         } else {
             $check_department = $conn->prepare("SELECT department_name FROM tbl_department WHERE department_name = :department_name");
             $check_department->bindParam(":department_name", $department_name);
@@ -15,7 +15,7 @@
             $row = $check_department->fetch(PDO::FETCH_ASSOC);
             if ($row['department_name'] == $department_name) {
                 $_SESSION['warning'] = "มีข้อมูลนี้อยู่ในระบบแล้ว";
-                header("location:  manage_department.php");
+                header("location:  manage_department");
             } else if (!isset($_SESSION['error'])) {
                    
                     $stmt = $conn->prepare("INSERT INTO tbl_department(department_name) 
@@ -24,14 +24,14 @@
                     $stmt->bindParam(":department_name", $department_name);
                     $stmt->execute();
                     $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อยแล้ว!";
-                    header("location: manage_department.php");
+                    header("location: manage_department");
                 } 
             } 
     } else if (isset($_POST['insert_status'])) {
         $status_name = $_POST['status_name'];
         if (empty($status_name)) {
             $_SESSION['error'] = 'กรุณากรอกสถานะ';
-            header("location: manage_status.php");
+            header("location: manage_status");
         } else {
             $check_status = $conn->prepare("SELECT status_name FROM tbl_status WHERE status_name = :status_name");
             $check_status->bindParam(":status_name", $status_name);
@@ -39,7 +39,7 @@
             $row = $check_status->fetch(PDO::FETCH_ASSOC);
             if ($row['status_name'] == $status_name) {
                 $_SESSION['warning'] = "มีข้อมูลนี้อยู่ในระบบแล้ว";
-                header("location:  manage_status.php");
+                header("location:  manage_status");
             } else if (!isset($_SESSION['error'])) {
                    
                     $stmt = $conn->prepare("INSERT INTO tbl_status(status_name) 
@@ -48,7 +48,7 @@
                     $stmt->bindParam(":status_name", $status_name);
                     $stmt->execute();
                     $_SESSION['success'] = "เพิ่มข้อมูลเรียบร้อยแล้ว!";
-                    header("location: manage_status.php");
+                    header("location: manage_status");
                 } 
             } 
     } else   if (isset($_POST['insert_info_maintenance'])) {
@@ -66,7 +66,7 @@
            
         if (empty($machine_name)) {
             $_SESSION['error'] = 'กรุณากรอก machine_name';
-            header("location: users_maintenance.php");
+            header("location: users_maintenance");
         } else {
             try {
               if (!isset($_SESSION['error'])) {
@@ -85,10 +85,10 @@
                     $stmt->bindParam(":case_status", $case_status);
                     $stmt->execute();
                     $_SESSION['success'] = "บันทึกข้อมูลเรียบร้อย";
-                    header("location: users_maintenance.php");
+                    header("location: users_maintenance");
                 } else {
                     $_SESSION['error'] = "มีบางอย่างผิดพลาด";
-                    header("location: users_maintenance.php");
+                    header("location: users_maintenance");
                 }
 
             } catch(PDOException $e) {
@@ -107,7 +107,7 @@
     
     if ($row['status_name'] == $status_name) {
         $_SESSION['warning'] = "มีข้อมูลนี้อยู่ในระบบแล้ว";
-        header("location:  manage_status.php");
+        header("location:  manage_status");
     } else {
     
         $sql = $conn->prepare("UPDATE tbl_status SET status_name=:status_name   WHERE sid = $sid ");
@@ -117,10 +117,10 @@
 
             if ($sql) {
                 $_SESSION['success'] = "อัพเดทข้อมูลสำเร็จ";
-                header("location: manage_status.php");
+                header("location: manage_status");
             } else {
                 $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
-                header("location: manage_status.php");
+                header("location: manage_status");
             }
         }
     } else if (isset($_POST['update_department'])) {
@@ -134,7 +134,7 @@
          
         if ($row['department_name'] == $department_name) {
             $_SESSION['warning'] = "มีข้อมูลนี้อยู่ในระบบแล้ว";
-            header("location:  manage_department.php");
+            header("location:  manage_department");
         } else {
         
             $sql = $conn->prepare("UPDATE tbl_department SET department_name=:department_name   WHERE department_id = $department_id ");
@@ -144,10 +144,10 @@
     
                 if ($sql) {
                     $_SESSION['success'] = "อัพเดทข้อมูลสำเร็จ";
-                    header("location: manage_department.php");
+                    header("location: manage_department");
                 } else {
                     $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
-                    header("location: manage_department.php");
+                    header("location: manage_department");
                 }
             }
         } else   if (isset($_POST['update_maintenance'])) {
@@ -174,10 +174,10 @@
     
             if ($sql) {
                 $_SESSION['success'] = "อัพเดทข้อมูลสำเร็จ";
-                header("location: maintenance_view.php");
+                header("location: maintenance_view");
             } else {
                 $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
-                header("location: maintenance_view.php");
+                header("location: maintenance_view");
             }
         } else   if (isset($_POST['update_status_maintenance'])) {
             $case_id = $_POST['case_id'];
@@ -192,10 +192,10 @@
     
             if ($sql) {
                 $_SESSION['success'] = "อัพเดทข้อมูลสำเร็จ";
-                header("location: manage_maintenance.php");
+                header("location: manage_maintenance");
             } else {
                 $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
-                header("location: manage_maintenance.php");
+                header("location: manage_maintenance");
             }
 
         } else   if (isset($_POST['case_status'])) {
@@ -210,10 +210,10 @@
     
             if ($sql) {
                 $_SESSION['success'] = "อัพเดทข้อมูลสำเร็จ";
-                header("location: maintenance_all.php");
+                header("location: maintenance_all");
             } else {
                 $_SESSION['error'] = "อัพเดทข้อมูลไม่สำเร็จ";
-                header("location: maintenance_all.php");
+                header("location: maintenance_all");
             }
         }
     
