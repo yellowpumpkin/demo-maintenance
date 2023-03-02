@@ -4,7 +4,7 @@
     require_once 'config/db.php';
     if (!isset($_SESSION['admin_login'])) {
         $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ!';
-        header('location: signin.php');
+        header('location: signin');
     } 
     
 ?>
@@ -74,7 +74,7 @@
     ?>
     <nav class="navbar navbar-light bg-light p-3">
         <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-            <a class="navbar-brand" href="admin.php">
+            <a class="navbar-brand" href="admin">
                 <?php echo $row['urole'] ?>
             </a>
             <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
@@ -93,7 +93,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     
-                    <li><a class="dropdown-item" href="signout.php">Sign out</a></li>
+                    <li><a class="dropdown-item" href="signout">Sign out</a></li>
                 </ul>
             </div>
         </div>
@@ -103,8 +103,8 @@
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="maintenance_view.php">
+                        <li class="nav-item"></li>
+                            <a class="nav-link " aria-current="page" href="maintenance_view">
                                 <i data-feather="folder"></i>
                                 <span class="ml-2">ข้อมูลแจ้งซ่อม</span>
                             </a>
@@ -117,12 +117,12 @@
                             <div class="collapse in" id="Adepartment">
                                 <ul id="">
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="manage_department.php">
+                                        <a class="nav-link" href="manage_department">
                                             <span class="link-collapse">ข้อมูลแผนกงาน</span>
                                         </a>
                                     </li>
                                     <li id="" class="nav-item">
-                                        <a class="nav-link" href="manage_status.php">
+                                        <a class="nav-link" href="manage_status">
                                             <span class="link-collapse">ข้อมูลสถานะ</span>
                                         </a>
                                     </li>
@@ -131,14 +131,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active " aria-current="page" data-toggle="collapse"
-                                href="manage_users.php">
+                                href="manage_users">
                                 <i data-feather="users"></i>
                                 <span class="ml-2">จัดการข้อมูลผู้ใช้งาน</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " aria-current="page" data-toggle="collapse"
-                                href="manage_maintenance.php">
+                                href="manage_maintenance">
                                 <i data-feather="settings"></i>
                                 <span class="ml-2">จัดการข้อมูลแจ้งซ่อม</span>
                             </a>
